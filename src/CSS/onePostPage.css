@@ -1,0 +1,270 @@
+/* OnePostPage.css */
+
+.post-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.post-page:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  background-color: #f0f0f0;
+  color: #333;
+  text-decoration: none;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.back-button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.back-button svg {
+  margin-right: 0.5rem;
+}
+
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 1.5rem;
+}
+
+.post-media {
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-media img,
+.post-media video {
+  width: 100%;
+  display: block;
+}
+
+small {
+  display: block;
+  font-size: 0.875rem;
+  color: #777;
+  margin-bottom: 1.5rem;
+}
+
+.post-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.like-button,
+.dislike-button,
+.edit-button,
+.delete-button,
+.save-button,
+.cancel-button,
+.confirm-delete {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.like-button,
+.dislike-button {
+  background-color: #f0f0f0;
+  color: #555;
+}
+
+.like-button:hover,
+.dislike-button:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+.like-button.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.dislike-button.active {
+  background-color: #F44336;
+  color: white;
+}
+
+.edit-button {
+  background-color: #2196F3;
+  color: white;
+}
+
+.edit-button:hover {
+  background-color: #1E88E5;
+  transform: translateY(-2px);
+}
+
+.delete-button {
+  background-color: #F44336;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: #E53935;
+  transform: translateY(-2px);
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.save-button:hover {
+  background-color: #45A049;
+  transform: translateY(-2px);
+}
+
+.cancel-button {
+  background-color: #9E9E9E;
+  color: white;
+}
+
+.cancel-button:hover {
+  background-color: #757575;
+  transform: translateY(-2px);
+}
+
+.confirm-delete {
+  background-color: #FF5722;
+  color: white;
+}
+
+.confirm-delete:hover {
+  background-color: #F4511E;
+  transform: translateY(-2px);
+}
+
+.edit-form {
+  margin-bottom: 1.5rem;
+}
+
+.edit-form input.edit-title,
+.edit-form textarea.edit-content {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.edit-form input.edit-title:focus,
+.edit-form textarea.edit-content:focus {
+  outline: none;
+  border-color: #2196F3;
+}
+
+.edit-form input.edit-title {
+  font-size: 1.25rem;
+}
+
+.edit-form textarea.edit-content {
+  min-height: 150px;
+  resize: vertical;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.delete-confirmation {
+  background-color: #FFF3E0;
+  padding: 1rem;
+  border-radius: 4px;
+  margin-top: 1rem;
+  border: 1px solid #FFE0B2;
+}
+
+.delete-confirmation p {
+  margin-bottom: 0.75rem;
+  color: #E65100;
+  font-weight: 500;
+}
+
+.loading,
+.error,
+.not-found {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.125rem;
+  color: #666;
+}
+
+.error {
+  color: #F44336;
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .post-page {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.875rem;
+  }
+
+  .post-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .like-button,
+  .dislike-button,
+  .edit-button,
+  .delete-button,
+  .save-button,
+  .cancel-button,
+  .confirm-delete {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .edit-form input.edit-title {
+    font-size: 1.125rem;
+  }
+
+  .edit-form textarea.edit-content {
+    font-size: 0.875rem;
+  }
+}

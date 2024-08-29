@@ -1,0 +1,134 @@
+.post-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .reaction-button {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .reaction-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .reaction-button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .like-button.active {
+    background-color: #28a745;
+  }
+  
+  .dislike-button.active {
+    background-color: #dc3545;
+  }
+  
+  .reaction-button svg {
+    margin-right: 5px;
+  }
+  
+  .reaction-button span {
+    font-weight: bold;
+  }
+  
+  .post-actions {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .reaction-button {
+    display: flex;
+    align-items: center;
+    background-color: #f0f0f0;
+    border: none;
+    border-radius: 20px;
+    padding: 5px 15px;
+    margin-right: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    color: #333; /* Couleur de texte sombre pour un meilleur contraste */
+  }
+  
+  .reaction-button:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .reaction-button.active {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  .like-button.active {
+    background-color: #28a745;
+  }
+  
+  .dislike-button.active {
+    background-color: #dc3545;
+  }
+  
+  .reaction-button svg {
+    margin-right: 5px;
+  }
+  
+  .reaction-button span {
+    font-weight: bold;
+  }
+  
+  /* Animation pour le clic */
+  @keyframes clickEffect {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .reaction-button:active {
+    animation: clickEffect 0.3s;
+  }
+  
+  /* Ajout d'un style spécifique pour le nombre de likes/dislikes */
+  .reaction-count {
+    margin-left: 5px;
+    font-weight: bold;
+    color: #333; /* Couleur de texte sombre pour un meilleur contraste */
+  }
+  
+  /* Ajustement pour les boutons actifs */
+  .reaction-button.active .reaction-count {
+    color: white;
+  }
+
+  /* Animation pour le clic */
+  @keyframes clickEffect {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.2);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+  
+  .reaction-button:active {
+    animation: clickEffect 0.3s;
+  }

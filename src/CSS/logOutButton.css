@@ -1,0 +1,19 @@
+.logout-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    background-color: #f0f0f0;
+  }
+  
+  .logout-page h1 {
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .logout-page p {
+    color: #666;
+    margin: 10px 0;
+  }

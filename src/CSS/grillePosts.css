@@ -1,0 +1,31 @@
+.home-cards-page {
+    padding: 2rem;
+  }
+  
+  .post-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    padding: 1rem;
+  }
+  
+  .post-card h2 {
+    color: #333;
+    margin-bottom: 0.5rem;
+  }
+  
+  .post-card p {
+    color: #666;
+    margin-bottom: 1rem;
+  }
+  
+  .post-card a {
+    color: #1976d2;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .post-card a:hover {
+    text-decoration: underline;
+  }

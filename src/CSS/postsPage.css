@@ -1,0 +1,134 @@
+.posts-page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.posts-page h1 {
+  color: #333;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.new-post-form {
+  margin-bottom: 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.new-post-form h2 {
+  margin-top: 0;
+  color: #007bff;
+}
+
+.new-post-form textarea,
+.new-post-form input[type="text"],
+.new-post-form select {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.new-post-form textarea {
+  height: 100px;
+  resize: vertical;
+}
+
+.new-post-form button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.new-post-form button:hover {
+  background-color: #0056b3;
+}
+
+.posts-list h2 {
+  margin-top: 30px;
+  color: #333;
+}
+
+.post-item {
+  margin-bottom: 20px;
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.post-item p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+.post-item img,
+.post-item video {
+  max-width: 100%;
+  border-radius: 4px;
+  margin-bottom: 15px;
+}
+
+.post-item small {
+  display: block;
+  color: #6c757d;
+  margin-bottom: 10px;
+}
+
+.post-actions {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.post-actions button {
+  padding: 5px 10px;
+  background-color: #f8f9fa;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.post-actions button:hover {
+  background-color: #e9ecef;
+}
+
+.post-item form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.post-item form button {
+  padding: 5px 10px;
+  margin-right: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.post-item form button:last-child {
+  background-color: #dc3545;
+}
+
+.post-item form button:hover {
+  opacity: 0.9;
+}
