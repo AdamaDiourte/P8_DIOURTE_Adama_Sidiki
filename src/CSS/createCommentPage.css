@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   height: 100vh;
+  background-color: #ffffff; /* Ajout d'une couleur de fond */
 }
 
 .comment-form {
@@ -27,14 +28,24 @@
   margin-bottom: 15px;
 }
 
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #495057;
+}
+
 .form-control {
   flex-grow: 1;
   width: 100%;
   padding: 10px;
   border: 1px solid #ced4da;
   border-radius: 4px;
-  resize: none;
+  resize: none; /* Empêche le redimensionnement manuel par l'utilisateur */
   font-family: Arial, sans-serif;
+  font-size: 1rem;
+  overflow-y: auto; /* Permet le défilement vertical si nécessaire */
+  overflow-x: hidden; /* Masque le défilement horizontal */
+  box-sizing: border-box; /* Inclut le padding et la bordure dans la largeur totale */
 }
 
 .form-control:focus {
@@ -53,6 +64,12 @@
   margin-bottom: 10px;
 }
 
+.button-group {
+  display: flex;
+  justify-content: space-between; /* Espace les boutons */
+  margin-top: 15px;
+}
+
 .submit-button {
   background-color: #007bff;
   color: white;
@@ -62,7 +79,6 @@
   cursor: pointer;
   font-size: 1em;
   transition: background-color 0.2s;
-  align-self: flex-start;
 }
 
 .submit-button:hover {
@@ -72,4 +88,31 @@
 .submit-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s;
+}
+
+.cancel-button:hover {
+  background-color: #5a6268;
+}
+
+@media (max-width: 480px) {
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .submit-button,
+  .cancel-button {
+    width: 100%;
+  }
 }

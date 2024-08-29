@@ -98,12 +98,13 @@ const CreateCommentPage = () => {
         </div>
         {error && <div className="error-message">{error}</div>}
         <div className="button-group">
-          <button type="button" onClick={handleCancel} className="cancel-button">
-            Annuler
-          </button>
           <button type="submit" className="submit-button" disabled={isSubmitting}>
             {isSubmitting ? 'Envoi en cours...' : 'Ajouter le commentaire'}
           </button>
+          <button type="button" onClick={handleCancel} className="cancel-button">
+            Annuler
+          </button>
+          
         </div>
       </form>
     </div>

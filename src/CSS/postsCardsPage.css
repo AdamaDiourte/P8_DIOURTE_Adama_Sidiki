@@ -108,7 +108,7 @@ body {
 }
 
 .comment:hover .comment-actions {
-  opacity: 0.3;
+  opacity: 1;
   
 }
 
