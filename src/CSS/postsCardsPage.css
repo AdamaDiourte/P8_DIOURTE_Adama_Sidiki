@@ -44,7 +44,9 @@ body {
 
 .post-content {
   padding: 25px;
-  border-bottom: 2px solid #f0f2f5;
+  border: 1px solid hsl(220, 16%, 4%);
+  border-radius: 20px;
+  
 }
 
 .post-title {

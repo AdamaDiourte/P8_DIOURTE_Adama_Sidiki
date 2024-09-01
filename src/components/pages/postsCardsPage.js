@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import { FaPencilAlt, FaTrash } from 'react-icons/fa';
 import '../../CSS/postsCardsPage.css';
 import ReactionButtons from './ReactionButtons';
+
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:50001/api';
 
 const axiosInstance = axios.create({
   timeout: 10000, // 10 seconds timeout
@@ -14,23 +15,20 @@ const PostsCardsPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [expandedComments, setExpandedComments] = useState({});
-  const [editingCommentId, setEditingCommentId] = useState(null);
-  const [editCommentContent, setEditCommentContent] = useState('');
 
   const navigate = useNavigate();
-  const currentUserId = localStorage.getItem('userId');
 
   const fetchPosts = useCallback(async () => {
     try {
       const token = localStorage.getItem('token');
-      const response = await axiosInstance.get('/api/posts', {
+      const response = await axiosInstance.get(`${API_URL}/posts`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const postsData = response.data.posts || [];
 
       const postsWithCommentCounts = await Promise.all(postsData.map(async (post) => {
         try {
-          const commentsResponse = await axiosInstance.get(`/api/posts/${post.id}/comments`, {
+          const commentsResponse = await axiosInstance.get(`${API_URL}/posts/${post.id}/comments`, {
             headers: { Authorization: `Bearer ${token}` }
           });
           return {
@@ -68,61 +66,6 @@ const PostsCardsPage = () => {
     ));
   }, []);
 
-  const handleEditComment = (commentId, content) => {
-    setEditingCommentId(commentId);
-    setEditCommentContent(content);
-  };
-
-  const handleUpdateComment = async (postId, commentId) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axiosInstance.put(`/api/comments/${commentId}`, 
-        { content: editCommentContent },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
-      
-      setPosts(prevPosts => prevPosts.map(post => 
-        post.id === postId
-          ? {
-              ...post,
-              comments: post.comments.map(comment => 
-                comment.id === commentId
-                  ? { ...comment, content: editCommentContent }
-                  : comment
-              )
-            }
-          : post
-      ));
-      setEditingCommentId(null);
-      setEditCommentContent('');
-    } catch (err) {
-      console.error('Erreur lors de la mise à jour du commentaire:', err);
-    }
-  };
-
-  const handleDeleteComment = async (postId, commentId) => {
-    if (window.confirm('Êtes-vous sûr de vouloir supprimer ce commentaire ?')) {
-      try {
-        const token = localStorage.getItem('token');
-        await axiosInstance.delete(`/api/comments/${commentId}`, {
-          headers: { Authorization: `Bearer ${token}` }
-        });
-        
-        setPosts(prevPosts => prevPosts.map(post => 
-          post.id === postId
-            ? {
-                ...post,
-                comments: post.comments.filter(comment => comment.id !== commentId),
-                commentCount: post.commentCount - 1
-              }
-            : post
-        ));
-      } catch (err) {
-        console.error('Erreur lors de la suppression du commentaire:', err);
-      }
-    }
-  };
-
   const toggleComments = (postId) => {
     setExpandedComments(prev => ({
       ...prev,
@@ -130,8 +73,9 @@ const PostsCardsPage = () => {
     }));
   };
 
-  const navigateToCommentPage = (postId) => {
-    navigate(`/create-comment/${postId}`);
+  const navigateToCommentPage = (comment) => {
+    console.log('Navigating to comment page:', comment);
+    navigate(`/comments/${comment.id}`);
   };
 
   if (loading) return <div className="loading">Chargement...</div>;
@@ -171,46 +115,29 @@ const PostsCardsPage = () => {
             <div className="comments-section">
               <h3>Commentaires ({post.commentCount})</h3>
               {displayedComments.map(comment => (
-                <div key={comment.id} className="comment">
-                  {editingCommentId === comment.id ? (
-                    <div className="edit-comment-form">
-                      <textarea
-                        value={editCommentContent}
-                        onChange={(e) => setEditCommentContent(e.target.value)}
-                      />
-                      <button onClick={() => handleUpdateComment(post.id, comment.id)}>Modifier</button>
-                      <button onClick={() => setEditingCommentId(null)}>Annuler</button>
-                    </div>
-                  ) : (
-                    <>
-                      <p className="commenter-name">{comment.authorPrenom} {comment.authorNom}</p>
-                      <p className="comment-content">{comment.content}</p>
-                      <p className="comment-meta">{new Date(comment.createdAt).toLocaleString()}</p>
-                      {currentUserId === comment.userId && (
-                        <div className="comment-actions">
-                          <button onClick={() => handleEditComment(comment.id, comment.content)}>
-                            <FaPencilAlt />
-                          </button>
-                          <button onClick={() => handleDeleteComment(post.id, comment.id)}>
-                            <FaTrash />
-                          </button>
-                        </div>
-                      )}
-                    </>
-                  )}
+                <div key={comment.id} className="comment" onClick={() => navigateToCommentPage(comment)}>
+                  <p className="commenter-name">{comment.authorPrenom} {comment.authorNom}</p>
+                  <p className="comment-content">{comment.content}</p>
+                  <p className="comment-meta">{new Date(comment.createdAt).toLocaleString()}</p>
                 </div>
               ))}
               <div className="comments-buttons">
                 <button 
                   className="add-comment-button" 
-                  onClick={() => navigateToCommentPage(post.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/create-comment/${post.id}`);
+                  }}
                 >
                   Ajouter un commentaire
                 </button>
                 {hasMoreComments && (
                   <button 
                     className="toggle-comments-button" 
-                    onClick={() => toggleComments(post.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleComments(post.id);
+                    }}
                   >
                     {isExpanded ? "Voir moins" : "Voir plus"}
                   </button>

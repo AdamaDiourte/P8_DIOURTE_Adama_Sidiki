@@ -1,5 +1,3 @@
-//App.js du frontend 
-
 import React, { useState, useEffect, useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import axios from 'axios';
@@ -10,6 +8,7 @@ import GrillePosts from './components/homePage/grillePosts';
 import ProfilePage from './components/pages/profilPage';
 import PostsCardsPage from './components/pages/postsCardsPage';
 import OnePostPage from './components/pages/onePostPage';
+import OneCommentPage from './components/pages/getOneCommentPage';
 import CreatePostPage from './components/pages/createPostPage';
 import CreateCommentPage from './components/pages/createCommentPage';
 import LogoutPage from './components/homePage/logOutButton';
@@ -18,6 +17,8 @@ import NavBar from './components/homePage/navBar';
 import ErrorPage from './components/pages/errorPage';
 import { AuthProvider, AuthContext } from './components/users/authContext';
 
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+
 function App() {
   const [message, setMessage] = useState('');
   const [error, setError] = useState(null);
@@ -25,7 +26,7 @@ function App() {
   useEffect(() => {
     const fetchInitialData = async () => {
       try {
-        const response = await axios.get('http://localhost:5000');
+        const response = await axios.get(API_URL);
         setMessage(response.data);
       } catch (error) {
         console.error('Erreur lors de la connexion au serveur:', error);
@@ -69,9 +70,7 @@ function AppContent({ message }) {
     };
   }, [logout]);
 
-  const PrivateRoute = ({ children }) => {
-    return isLoggedIn ? children : <Navigate to="/login" />;
-  };
+  const PrivateRoute = ({ children }) => isLoggedIn ? children : <Navigate to="/login" />;
 
   return (
     <div className="App">
@@ -87,6 +86,7 @@ function AppContent({ message }) {
         <Route path="/profilPage" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
         <Route path="/postsPage" element={<PrivateRoute><PostsCardsPage /></PrivateRoute>} />
         <Route path="/posts/:id" element={<PrivateRoute><OnePostPage /></PrivateRoute>} />
+        <Route path="/comments/:commentId" element={<PrivateRoute><OneCommentPage /></PrivateRoute>} />
         <Route path="/create-post" element={<PrivateRoute><CreatePostPage /></PrivateRoute>} />
         <Route path="/create-comment/:postId" element={<PrivateRoute><CreateCommentPage /></PrivateRoute>} />
         <Route path="/logOutPage" element={<LogoutPage onLogout={logout} />} />
