@@ -46,7 +46,6 @@ body {
   padding: 25px;
   border: 1px solid hsl(220, 16%, 4%);
   border-radius: 20px;
-  
 }
 
 .post-title {
@@ -100,25 +99,23 @@ body {
 }
 
 .comment-actions {
-  position: absolute;
   top: 10px;
   right: 10px;
   display: flex;
   gap: 5px;
-  opacity: 0;
   transition: opacity 0.3s ease;
+  opacity: 1; /* Toujours visible */
 }
 
 .comment:hover .comment-actions {
-  opacity: 1;
-  
+  opacity: 1; /* Effet de survol pour animer les boutons */
 }
 
 .comment-actions button {
-  background: none;
+  /*background: none;*/
   border: none;
   cursor: pointer;
-  color: #95a5a6;
+ /* color: #95a5a6;*/
   font-size: 0.875rem;
   transition: color 0.3s ease;
 }
@@ -198,8 +195,6 @@ body {
     font-size: 0.75rem;
     padding: 6px 12px;
   }
-
-  
 }
 
 @media (max-width: 480px) {
@@ -212,13 +207,188 @@ body {
   }
 
   .comment-actions {
-    position: static;
     justify-content: flex-end;
     margin-top: 10px;
-    opacity: 1;
+    opacity: 1; /* Toujours visible sur mobile */
   }
 
   .comment-actions button {
     font-size: 0.75rem;
+  }
+}
+
+/* CSS pour la page GetOneCommentPage */
+
+:root {
+  --primary-color: #3498db;
+  --secondary-color: #2ecc71;
+  --danger-color: #e74c3c;
+  --text-color: #333;
+  --background-color: #f5f5f5;
+  --card-background: #ffffff;
+  --border-color: #e0e0e0;
+}
+
+.comment-page {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: var(--background-color);
+  font-family: Arial, sans-serif;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.comment-details {
+  background-color: var(--card-background);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.comment-content {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+}
+
+.comment-meta {
+  font-size: 0.9rem;
+  color: #777;
+  margin-bottom: 1rem;
+}
+
+.comment-author {
+  font-weight: bold;
+  color: var(--text-color);
+}
+
+.comment-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  opacity: 1; /* Toujours visible */
+}
+
+.edit-button, .delete-button, .save-button, .cancel-button, .confirm-delete {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+  text-align: center;
+  text-decoration: none;
+  color: white;
+}
+
+.edit-button {
+  background-color: var(--secondary-color);
+}
+
+.delete-button, .confirm-delete {
+  background-color: var(--danger-color);
+}
+
+.save-button {
+  background-color: var(--primary-color);
+}
+
+.cancel-button {
+  background-color: #95a5a6;
+}
+
+.edit-button:hover, .save-button:hover {
+  background-color: #27ae60;
+}
+
+.delete-button:hover, .confirm-delete:hover {
+  background-color: #c0392b;
+}
+
+.cancel-button:hover {
+  background-color: #7f8c8d;
+}
+
+.edit-form {
+  margin-top: 1rem;
+}
+
+.edit-content {
+  width: 100%;
+  min-height: 100px;
+  padding: 0.5rem;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+}
+
+.edit-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.delete-confirmation {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fadbd8;
+  border: 1px solid var(--danger-color);
+  border-radius: 4px;
+}
+
+.delete-confirmation p {
+  margin-bottom: 1rem;
+  color: var(--danger-color);
+}
+
+.loading, .error-message {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--text-color);
+}
+
+.error-message {
+  color: var(--danger-color);
+}
+
+@media (max-width: 600px) {
+  .comment-page {
+    padding: 0.5rem;
+  }
+
+  .comment-details {
+    padding: 1rem;
+  }
+
+  .comment-actions {
+    flex-direction: column;
+  }
+
+  .edit-button, .delete-button, .save-button, .cancel-button, .confirm-delete {
+    width: 100%;
   }
 }

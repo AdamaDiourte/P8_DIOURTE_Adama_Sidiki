@@ -8,7 +8,7 @@ import GrillePosts from './components/homePage/grillePosts';
 import ProfilePage from './components/pages/profilPage';
 import PostsCardsPage from './components/pages/postsCardsPage';
 import OnePostPage from './components/pages/onePostPage';
-import OneCommentPage from './components/pages/getOneCommentPage';
+import GetOneCommentPage from './components/pages/getOneCommentPage';
 import CreatePostPage from './components/pages/createPostPage';
 import CreateCommentPage from './components/pages/createCommentPage';
 import LogoutPage from './components/homePage/logOutButton';
@@ -52,7 +52,7 @@ function App() {
 }
 
 function AppContent({ message }) {
-  const { isLoggedIn, logout } = useContext(AuthContext);
+  const { isLoggedIn, logout, userId } = useContext(AuthContext); // Ajout de userId pour les autres composants
 
   useEffect(() => {
     const interceptor = axios.interceptors.response.use(
@@ -85,8 +85,9 @@ function AppContent({ message }) {
         <Route path="/login" element={isLoggedIn ? <Navigate to="/home" /> : <Login />} />
         <Route path="/profilPage" element={<PrivateRoute><ProfilePage /></PrivateRoute>} />
         <Route path="/postsPage" element={<PrivateRoute><PostsCardsPage /></PrivateRoute>} />
-        <Route path="/posts/:id" element={<PrivateRoute><OnePostPage /></PrivateRoute>} />
-        <Route path="/comments/:commentId" element={<PrivateRoute><OneCommentPage /></PrivateRoute>} />
+        {/* On passe l'ID de l'utilisateur connecté dans les composants de post et de commentaire */}
+        <Route path="/posts/:id" element={<PrivateRoute><OnePostPage userId={userId} /></PrivateRoute>} />
+        <Route path="/comments/:commentId" element={<PrivateRoute><GetOneCommentPage userId={userId} /></PrivateRoute>} />
         <Route path="/create-post" element={<PrivateRoute><CreatePostPage /></PrivateRoute>} />
         <Route path="/create-comment/:postId" element={<PrivateRoute><CreateCommentPage /></PrivateRoute>} />
         <Route path="/logOutPage" element={<LogoutPage onLogout={logout} />} />

@@ -16,8 +16,9 @@ const GetOneCommentPage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedContent, setEditedContent] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  
+
   const currentUserId = localStorage.getItem('userId');
+
   console.log('Current User ID:', currentUserId);
 
   useEffect(() => {
@@ -44,10 +45,12 @@ const GetOneCommentPage = () => {
   const handleEdit = async () => {
     try {
       const token = localStorage.getItem('token');
-      await axios.put(`${API_URL}/comments/${commentId}`, 
+      const response = await axios.put(
+        `${API_URL}/comments/${commentId}`,
         { content: editedContent },
         { headers: { Authorization: `Bearer ${token}` } }
       );
+      console.log('Edit Response:', response.data);
       setComment(prevComment => ({ ...prevComment, content: editedContent }));
       setIsEditing(false);
     } catch (error) {
@@ -73,9 +76,9 @@ const GetOneCommentPage = () => {
   if (error) return <div className="error-message">{error}</div>;
   if (!comment) return <div className="error-message">Commentaire non trouvé.</div>;
 
-  // Utilisez user_id si userId n'est pas disponible
   const commentUserId = comment.userId || comment.user_id;
   const isAuthor = currentUserId === String(commentUserId);
+
   console.log('Is Author:', isAuthor);
   console.log('Comment User ID:', commentUserId);
 
